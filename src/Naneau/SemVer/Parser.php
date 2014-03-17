@@ -40,7 +40,8 @@ class Parser
      **/
     public static function parse($string)
     {
-        $matches = Regex::matchSemVer($string);
+        $string = preg_split('/^\D+/', $string, NULL, PREG_SPLIT_NO_EMPTY);
+        $matches = Regex::matchSemVer($string[0]);
 
         // Parse the SemVer root
         $version = VersionableParser::parse(
